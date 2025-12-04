@@ -1,15 +1,14 @@
+// server.js
 import express from "express";
 import dotenv from "dotenv";
 import { connectDB } from "./config/db.js";
-import userRoutes from "./routes/user.routes.js"; // <--- AJOUT
+import userRoutes from "./routes/user.routes.js";
+import orderRoutes from "./routes/order.routes.js";
 
-// Charger les variables d'environnement (.env)
 dotenv.config();
 
-// Créer l'application Express
 const app = express();
 
-// Middleware pour comprendre le JSON
 app.use(express.json());
 
 // Route de test
@@ -21,18 +20,24 @@ app.get("/api/health", (req, res) => {
 });
 
 // Routes Users
-app.use("/api/users", userRoutes); // <--- AJOUT
+app.use("/api/users", userRoutes);
 
-// Port
+// Routes Orders
+app.use("/api/orders", orderRoutes);
+
 const PORT = process.env.PORT || 4000;
 
-// Lancer l'application
 const startServer = async () => {
-  await connectDB();
+  try {
+    await connectDB();
 
-  app.listen(PORT, () => {
-    console.log(`🚀 Serveur démarré sur http://localhost:${PORT}`);
-  });
+    app.listen(PORT, () => {
+      console.log(`🚀 Serveur démarré sur http://localhost:${PORT}`);
+    });
+  } catch (error) {
+    console.error("❌ Erreur de démarrage du serveur :", error.message);
+    process.exit(1);
+  }
 };
 
 startServer();
