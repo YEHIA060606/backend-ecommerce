@@ -1,0 +1,37 @@
+[
+  {
+    "firstname": "Sara",
+    "lastname": "Ait",
+    "email": "sara@example.com",
+    "password": "123456",
+    "role": "customer"
+  },
+  {
+    "firstname": "Ali",
+    "lastname": "Hamid",
+    "email": "ali@example.com",
+    "password": "azerty",
+    "role": "admin"
+  },
+  {
+    "firstname": "Yassine",
+    "lastname": "Tariq",
+    "email": "yassine@example.com",
+    "password": "pass123",
+    "role": "customer"
+  },
+  {
+    "firstname": "Lina",
+    "lastname": "Omar",
+    "email": "lina@example.com",
+    "password": "test123",
+    "role": "customer"
+  },
+  {
+    "firstname": "Younes",
+    "lastname": "Fakir",
+    "email": "younes@example.com",
+    "password": "secret",
+    "role": "customer"
+  }
+]
