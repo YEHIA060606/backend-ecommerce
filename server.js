@@ -6,6 +6,8 @@ import userRoutes from "./routes/user.routes.js";
 import orderRoutes from "./routes/order.routes.js";
 import productRoutes from "./routes/product.routes.js";
 import invoiceRoutes from "./routes/invoice.routes.js";
+import reviewRoutes from "./routes/review.routes.js";
+
 
 
 dotenv.config();
@@ -33,6 +35,9 @@ app.use("/api/products", productRoutes);
 
 // Routes Invoices
 app.use("/api/invoices", invoiceRoutes);
+
+// Routes Reviews
+app.use("/api/reviews", reviewRoutes);
 
 
 
