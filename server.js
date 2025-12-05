@@ -5,6 +5,7 @@ import { connectDB } from "./config/db.js";
 import userRoutes from "./routes/user.routes.js";
 import orderRoutes from "./routes/order.routes.js";
 import productRoutes from "./routes/product.routes.js";
+import invoiceRoutes from "./routes/invoice.routes.js";
 
 
 dotenv.config();
@@ -27,7 +28,12 @@ app.use("/api/users", userRoutes);
 // Routes Orders
 app.use("/api/orders", orderRoutes);
 
+// Routes Products
 app.use("/api/products", productRoutes);
+
+// Routes Invoices
+app.use("/api/invoices", invoiceRoutes);
+
 
 
 const PORT = process.env.PORT || 4000;
