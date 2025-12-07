@@ -28,32 +28,33 @@ Il inclut la gestion des utilisateurs, produits, commandes, factures et avis, av
 
 ## 📁 Structure du projet
 
+```txt
 backend-ecommerce/
 │
 ├── config/
-│ └── db.js # Connexion MongoDB
+│   └── db.js        # Connexion MongoDB
 │
 ├── models/
-│ ├── user.model.js
-│ ├── product.model.js
-│ ├── order.model.js
-│ ├── invoice.model.js
-│ └── review.model.js # (module à venir)
+│   ├── user.model.js
+│   ├── product.model.js
+│   ├── order.model.js
+│   ├── invoice.model.js
+│   └── review.model.js
 │
 ├── routes/
-│ ├── user.routes.js
-│ ├── product.routes.js
-│ ├── order.routes.js
-│ ├── invoice.routes.js
-│ └── review.routes.js # (module à venir)
+│   ├── user.routes.js
+│   ├── product.routes.js
+│   ├── order.routes.js
+│   ├── invoice.routes.js
+│   └── review.routes.js
 │
 ├── data/
-│ └── users.json # Import Users (les autres fichiers sont optionnels)
+│   └── users.json   # Import Users
 │
-├── server.js # Point d’entrée du backend
-├── .env # Variables d’environnement
+├── server.js
+├── .env
 └── package.json
-
+```
 ---
 
 # 🚀 Démarrage du projet
@@ -61,7 +62,7 @@ backend-ecommerce/
 ### 1️⃣ Installer les dépendances
 
 ```bash
-npm install
+npm install 
 2️⃣ Configurer les variables d’environnement
 Créer un fichier .env :
 
