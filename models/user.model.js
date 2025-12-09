@@ -1,4 +1,3 @@
-// models/user.model.js
 import mongoose from "mongoose";
 import validator from "validator";
 
@@ -19,7 +18,7 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true,
-      minlength: 6, // pour le projet on ne chiffre pas, c'est ok
+      minlength: 6, 
     },
     role: {
       type: String,

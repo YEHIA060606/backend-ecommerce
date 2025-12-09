@@ -1,15 +1,10 @@
-// routes/invoice.routes.js
 import { Router } from "express";
 import Invoice from "../models/invoice.model.js";
 import Order from "../models/order.model.js";
 
 const router = Router();
 
-/**
- * POST /api/invoices
- * Créer une facture à partir d'une commande
- * Body: { orderId, paymentMethod, markAsPaid }
- */
+
 router.post("/", async (req, res) => {
   try {
     const { orderId, paymentMethod, markAsPaid } = req.body;
@@ -24,7 +19,7 @@ router.post("/", async (req, res) => {
       return res.status(404).json({ message: "Commande non trouvée" });
     }
 
-    // Vérifier si une facture existe déjà pour cette commande
+
     const existingInvoice = await Invoice.findOne({ order: order._id });
     if (existingInvoice) {
       return res
@@ -52,11 +47,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-/**
- * GET /api/invoices
- * Liste des factures avec filtres
- * ?userId=&status=&startDate=&endDate=
- */
+
 router.get("/", async (req, res) => {
   try {
     const { userId, status, startDate, endDate } = req.query;
@@ -85,14 +76,10 @@ router.get("/", async (req, res) => {
   }
 });
 
-/**
- * GET /api/invoices/stats/revenue
- * Statistiques CA payé par mois
- */
+
 router.get("/stats/revenue", async (_req, res) => {
   try {
     const stats = await Invoice.aggregate([
-      // On ne prend en compte que les factures payées
       { $match: { status: "paid" } },
       {
         $group: {

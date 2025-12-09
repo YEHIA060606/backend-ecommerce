@@ -1,32 +1,28 @@
-// routes/user.routes.js
 import { Router } from "express";
 import fs from "fs";
 import User from "../models/user.model.js";
 
 const router = Router();
 
-/**
- * POST /api/users
- * Créer un utilisateur
- */
+
 router.post("/", async (req, res) => {
   try {
     const { firstname, lastname, email, password, role } = req.body;
 
-    // Vérifier les champs obligatoires
+
     if (!firstname || !lastname || !email || !password) {
       return res.status(400).json({
         message: "firstname, lastname, email et password sont obligatoires",
       });
     }
 
-    // Vérifier si l'email existe déjà
+
     const existing = await User.findOne({ email });
     if (existing) {
       return res.status(409).json({ message: "Email déjà utilisé" });
     }
 
-    // Créer l'utilisateur
+
     const user = await User.create({
       firstname,
       lastname,
@@ -35,7 +31,7 @@ router.post("/", async (req, res) => {
       role,
     });
 
-    // On renvoie l'utilisateur créé
+
     res.status(201).json(user);
   } catch (error) {
     console.error("Erreur création user:", error.message);
@@ -45,10 +41,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-/**
- * GET /api/users
- * Récupérer la liste des users avec recherche + filtres + pagination
- */
+
 router.get("/", async (req, res) => {
   try {
     const { search, role, page = 1, limit = 10 } = req.query;
@@ -90,18 +83,13 @@ router.get("/", async (req, res) => {
   }
 });
 
-/**
- * POST /api/users/import
- * Importer des users depuis /data/users.json
- */
+
 router.post("/import", async (req, res) => {
   try {
-    // lire le fichier JSON (chemin relatif à la racine du projet)
     const data = fs.readFileSync("./data/users.json", "utf-8");
     const users = JSON.parse(data);
 
-    // insérer dans la base
-    // option: ordered: false pour ignorer ceux qui ont des emails déjà utilisés
+
     const inserted = await User.insertMany(users, { ordered: false });
 
     res.status(201).json({
@@ -118,19 +106,15 @@ router.post("/import", async (req, res) => {
   }
 });
 
-/**
- * GET /api/users/stats/orders
- * (à utiliser quand la collection Orders sera prête)
- * Statistiques : nb de commandes + total dépensé par user
- */
+
 router.get("/stats/orders", async (req, res) => {
   try {
     const stats = await User.aggregate([
       {
         $lookup: {
-          from: "orders",        // nom de la collection MongoDB
-          localField: "_id",     // _id du user
-          foreignField: "user",  // champ "user" dans la collection orders
+          from: "orders",        
+          localField: "_id",     
+          foreignField: "user",  
           as: "orders",
         },
       },

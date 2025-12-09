@@ -1,13 +1,9 @@
-// routes/product.routes.js
 import { Router } from "express";
 import Product from "../models/product.model.js";
 
 const router = Router();
 
-/**
- * POST /api/products
- * Créer un produit
- */
+
 router.post("/", async (req, res) => {
   try {
     const { name, description, price, stock, category } = req.body;
@@ -35,10 +31,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-/**
- * GET /api/products
- * Filtres + pagination
- */
+
 router.get("/", async (req, res) => {
   try {
     const {
@@ -85,10 +78,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-/**
- * GET /api/products/stats/basic
- * Prix moyen, min, max, nombre total
- */
+
 router.get("/stats/basic", async (_req, res) => {
   try {
     const stats = await Product.aggregate([

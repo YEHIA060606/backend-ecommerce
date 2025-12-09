@@ -1,4 +1,3 @@
-// models/review.model.js
 import mongoose from "mongoose";
 
 const reviewSchema = new mongoose.Schema(
@@ -27,7 +26,7 @@ const reviewSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// Un user ne peut laisser qu'un seul avis par produit
+
 reviewSchema.index({ user: 1, product: 1 }, { unique: true });
 
 const Review = mongoose.model("Review", reviewSchema);

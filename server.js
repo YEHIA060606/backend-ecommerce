@@ -16,7 +16,7 @@ const app = express();
 
 app.use(express.json());
 
-// Route de test
+
 app.get("/api/health", (req, res) => {
   res.status(200).json({
     status: "OK",
@@ -24,19 +24,19 @@ app.get("/api/health", (req, res) => {
   });
 });
 
-// Routes Users
+
 app.use("/api/users", userRoutes);
 
-// Routes Orders
+
 app.use("/api/orders", orderRoutes);
 
-// Routes Products
+
 app.use("/api/products", productRoutes);
 
-// Routes Invoices
+
 app.use("/api/invoices", invoiceRoutes);
 
-// Routes Reviews
+
 app.use("/api/reviews", reviewRoutes);
 
 

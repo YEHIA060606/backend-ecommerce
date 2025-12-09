@@ -1,16 +1,12 @@
-// routes/order.routes.js
 import { Router } from "express";
 import Order from "../models/order.model.js";
 
 const router = Router();
 
-// juste pour vérifier que le fichier est bien chargé
+
 console.log("✅ order.routes.js chargé (version FINALE)");
 
-/**
- * POST /api/orders
- * Créer une commande
- */
+
 router.post("/", async (req, res) => {
   try {
     const { userId, items, status } = req.body;
@@ -21,7 +17,7 @@ router.post("/", async (req, res) => {
       });
     }
 
-    // Calcul du total
+    
     const totalAmount = items.reduce((sum, item) => {
       const q = item.quantity || 0;
       const p = item.priceAtOrder || 0;
@@ -49,10 +45,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-/**
- * GET /api/orders
- * Liste des commandes (simple pour l’instant)
- */
+
 router.get("/", async (req, res) => {
   try {
     const orders = await Order.find();
@@ -66,10 +59,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-/**
- * GET /api/orders/stats/monthly
- * Statistiques mensuelles (CA + nombre de commandes)
- */
+
 router.get("/stats/monthly", async (req, res) => {
   try {
     const stats = await Order.aggregate([
